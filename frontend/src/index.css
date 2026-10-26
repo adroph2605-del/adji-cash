@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 14 16 21; --surface: 35 38 47; --surface2: 26 29 36; --hover: 45 50 62;
+  --ink: 255 255 255; --muted: 156 163 175; --line: 255 255 255; --accent: 182 255 46;
+  color-scheme: dark;
+}
+.light {
+  --bg: 243 245 249; --surface: 255 255 255; --surface2: 238 241 246; --hover: 232 236 243;
+  --ink: 14 16 21; --muted: 98 106 120; --line: 14 16 21; --accent: 63 98 18;
+  color-scheme: light;
+}
+html, body, #root { min-height: 100%; }
+body { @apply bg-onyx text-ink font-sans antialiased; }
+.num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+.glass { @apply backdrop-blur-xl bg-graphite/80 border border-white/10 shadow-2xl; }
+.light .glass { @apply border-black/10; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--muted) / .3); border-radius: 8px; }
+:focus-visible { outline: 2px solid #B6FF2E; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+@media print { aside, header, button { display: none !important; } }
+
+/* ---- Motion ---- */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+.caret { display: inline-block; width: 2px; height: 1em; margin-left: 3px; vertical-align: -0.14em; background: currentColor; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes kb { from { transform: scale(1.04) translate(0, 0); } to { transform: scale(1.17) translate(-2.5%, -1.5%); } }
+.kb { animation: kb 16s ease-in-out infinite alternate; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.bob { animation: bob 6s ease-in-out infinite; }
+.bob-2 { animation: bob 7.5s ease-in-out -2s infinite; }
+.bob-3 { animation: bob 5.5s ease-in-out -4s infinite; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+@keyframes shimmer { to { background-position: 200% center; } }
+.shimmer { background: linear-gradient(90deg, rgb(var(--ink)) 0%, #B6FF2E 25%, rgb(var(--ink)) 50%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 6s linear infinite; }

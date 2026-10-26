@@ -1,0 +1,12 @@
+{
+  "name": "adji-cash",
+  "private": true,
+  "version": "3.0.0",
+  "scripts": {
+    "setup": "npm install && npm --prefix frontend install && npm --prefix backend install",
+    "dev": "concurrently -n web,api -c cyan,green \"npm --prefix frontend run dev\" \"npm --prefix backend run dev\"",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix backend run start"
+  },
+  "devDependencies": { "concurrently": "^9.0.1" }
+}
